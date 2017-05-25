@@ -1,0 +1,50 @@
+---
+- name: Upgrade CFME to latest version
+  hosts: cfme-appliances
+  become: true
+  become_user: root
+
+  tasks:
+  - name: stop CFME engine (evmserverd)
+    service:
+      name: evmserverd
+      state: stopped
+
+  - name: Add yum repositories
+      yum_repository:
+        name: {{ item.name }}
+        baseurl: {{ repo.url }}
+        gpgcheck: no
+      with_file:
+        - yum-repo-list.yaml
+
+  - name: upgrade all packages
+      yum:
+        name: 'cfme*'
+        state: latest
+
+  - name: restart pglogical library
+    service:
+      name: {{ lookup('env','APPLIANCE_PG_SERVICE') }}
+      state: restarted
+
+  - name: migrate everything in the database to work with the new version
+    shell: |
+      vmdb
+      rake db:migrate
+      exit 0
+  - name: resets the ManageIQ
+    shell: |
+      vmdb
+      ake evm:automate:reset
+      exit 0
+
+  - name: Restart PostgreSQL
+    service:
+      name: rh-postgresql95-postgres
+      state: restarted
+
+  - name: start CFME engine (evmserverd)
+    service:
+      name: evmserverd
+      state: started
