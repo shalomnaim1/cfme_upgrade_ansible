@@ -6,11 +6,29 @@ the automation will use inventory file that include all the target system to upg
 repo list file which contain urls of repositories with the latest version of CFME.
 
 ## User manual:
-#TODO: add this docs
+ansible-playbook cfme_upgrade_playbook.yaml -i hosts cfme_upgrade_playbook.yaml -u root
+    -e "username=<user for subscriber manager> password=<password for subscriber manager>"
 
 ## Input files structure:
 ### Inventory file:
-#TODO: add this docs
+The inventory file contain only one group named cfme-appliances
+
+**example:**
+
+[cfme-appliances]
+10.35.70.96
 
 ### Repo list file:
-#TODO: add this docs
+This is file on yum db format, each repo contain 4 args:
+1) repo name
+2) repo url
+3) repo state enbaled
+4) gpg disable flag
+
+**example:**
+
+[update-0]
+name=update-url-0
+baseurl=http://url/to/repo
+enabled=1
+gpgcheck=0
