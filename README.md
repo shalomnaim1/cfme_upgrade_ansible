@@ -1,6 +1,6 @@
 # cfme_upgrade_ansible
 
-on this project i will developing automation based on ansible to u[grade CFME systems.
+on this project i will developing automation based on ansible to ugrade CFME appliances.
 
 the automation will use inventory file that include all the target system to upgrade and
 repo list file which contain urls of repositories with the latest version of CFME.
