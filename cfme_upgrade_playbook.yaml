@@ -1,47 +1,49 @@
 ---
 - name: Upgrade CFME to latest version
   hosts: cfme-appliances
-  become: true
-  become_user: root
-
+  remote_user: root
   tasks:
   - name: stop CFME engine (evmserverd)
     service:
       name: evmserverd
       state: stopped
+  - name: Copy repo data to appliance
+    copy:
+      src: latest-repo.repo
+      dest: /etc/yum.repos.d/cfme-latest-repo.repo
+      owner: root
 
-  - name: Add yum repositories
-      yum_repository:
-        name: {{ item.name }}
-        baseurl: {{ repo.url }}
-        gpgcheck: no
-      with_file:
-        - yum-repo-list.yaml
+  - name: Register to subscription manager
+    redhat_subscription:
+      state: present
+      username: "{{ username }}"
+      password: "{{ password }}"
 
   - name: upgrade all packages
-      yum:
-        name: 'cfme*'
-        state: latest
+    yum:
+      name: '*'
+      state: latest
+      disable_gpg_check: yes
 
   - name: restart pglogical library
     service:
-      name: {{ lookup('env','APPLIANCE_PG_SERVICE') }}
+      name: "{{ ansible_env['APPLIANCE_PG_SERVICE'] }}"
       state: restarted
 
   - name: migrate everything in the database to work with the new version
     shell: |
-      vmdb
+      cd /var/www/miq/vmdb
       rake db:migrate
       exit 0
   - name: resets the ManageIQ
     shell: |
-      vmdb
-      ake evm:automate:reset
+      cd /var/www/miq/vmdb
+      rake evm:automate:reset
       exit 0
 
   - name: Restart PostgreSQL
     service:
-      name: rh-postgresql95-postgres
+      name: rh-postgresql95-postgresql
       state: restarted
 
   - name: start CFME engine (evmserverd)
