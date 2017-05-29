@@ -6,11 +6,13 @@ the automation will use inventory file that include all the target system to upg
 repo list file which contain urls of repositories with the latest version of CFME.
 
 ## User manual:
- borofe using this playbook, make sure ssh to any host is allowed with root user and without password.
+
+borofe using this playbook, make sure ssh to any host is allowed with root user and without password.
 
 **Ansible playbool run command:**
 ansible-playbook cfme_upgrade_playbook.yaml -i hosts -u root
     -e "username=user_for_subscriber_manager password=password_for_subscriber_manager"
+
 
 
 ## Input files structure:
@@ -35,4 +37,5 @@ This is file on yum db format, each repo contain 4 args:
 name=update-url-0
 baseurl=http://url/to/repo
 enabled=1
+
 gpgcheck=0
