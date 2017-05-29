@@ -43,7 +43,7 @@
 
   - name: Restart PostgreSQL
     service:
-      name: rh-postgresql95-postgresql
+      name: "{{ ansible_env['APPLIANCE_PG_SERVICE'] }}"
       state: restarted
 
   - name: start CFME engine (evmserverd)
