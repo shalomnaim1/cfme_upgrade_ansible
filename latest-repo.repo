@@ -1,5 +1,0 @@
-[update-0]
-name=update-url-0
-baseurl=http://url/to/repo
-enabled=1
-gpgcheck=0
