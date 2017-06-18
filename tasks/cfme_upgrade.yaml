@@ -7,11 +7,14 @@
     service:
       name: evmserverd
       state: stopped
+
   - name: Copy repo data to appliance
-    copy:
-      src: latest-repo.repo
-      dest: /etc/yum.repos.d/cfme-latest-repo.repo
-      owner: root
+    yum_repository:
+      name: "update-{{ item.0 }}"
+      description: "CFME upgrade repo #{{ item.0 }}"
+      baseurl: "{{ item.1 }}"
+      gpgcheck: no
+    with_indexed_items: "{{ repos }}"
 
   - name: Register to subscription manager
     redhat_subscription:

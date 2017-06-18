@@ -7,13 +7,11 @@ repo list file which contain urls of repositories with the latest version of CFM
 
 ## User manual:
 
-borofe using this playbook, make sure ssh to any host is allowed with root user and without password.
+before using this playbook, make sure ssh to any host is allowed with root user and without password.
 
 **Ansible playbool run command:**
-ansible-playbook cfme_upgrade_playbook.yaml -i hosts -u root
-    -e "username=user_for_subscriber_manager password=password_for_subscriber_manager"
-
-
+ansible-playbook cfme_upgrade_playbook.yaml -i hosts -u root -e
+{"username":"username","password":"password","repos":["http://url/to/repo/1","http://url/to/repo/2..."]}
 
 ## Input files structure:
 ### Inventory file:
