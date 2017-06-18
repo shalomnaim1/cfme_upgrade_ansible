@@ -1,0 +1,12 @@
+---
+- name: Upgrade CFME to latest version
+  hosts: cfme-appliances
+- tasks:
+    - git:
+        repo: https://github.com/shalomnaim1/cfme_upgrade_ansible.git
+        dest: "/tmp/playbook.yml"
+        update: "yes"
+        version: "master"
+
+    - name: Upgrade CFME to latest version
+      include: "/tmp/playbook.yml"

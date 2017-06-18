@@ -1,7 +1,6 @@
 ---
 - name: Upgrade CFME to latest version
   hosts: cfme-appliances
-  remote_user: root
   tasks:
   - name: stop CFME engine (evmserverd)
     service:
