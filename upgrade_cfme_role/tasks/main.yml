@@ -1,0 +1,7 @@
+---
+- include: upgrade_cfme_role/tasks/stop_cfme.yaml
+- include: upgrade_cfme_role/tasks/yum_settings.yaml
+- include: upgrade_cfme_role/tasks/cfme_upgrade.yaml
+- include: upgrade_cfme_role/tasks/configure.yaml
+- include: upgrade_cfme_role/tasks/start_cfme.yaml
+
