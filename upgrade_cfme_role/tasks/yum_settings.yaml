@@ -1,5 +1,5 @@
 ---
-- name: Copy repo data to appliance
+- name: adding cfme upgrade yum repositories
   yum_repository:
     name: "update-{{ item.0 }}"
     description: "CFME upgrade repo #{{ item.0 }}"
