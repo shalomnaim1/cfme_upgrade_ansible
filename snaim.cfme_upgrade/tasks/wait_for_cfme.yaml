@@ -1,0 +1,11 @@
+---
+ - name: wait for cfme login page to be available
+   remote_user: root
+   uri:
+    url: https:{{ansible_hostname}}
+#    status_code: 200
+#   register: result
+#   until: result.status == 200
+#   retries: 12
+#   delay: 5
+
