@@ -3,4 +3,4 @@
   hosts: cfme-appliances
   remote_user: root
   roles:
-    - upgrade_cfme_role
+    - cfme_upgrade_ansible

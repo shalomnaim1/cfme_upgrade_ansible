@@ -1,5 +1,0 @@
----
-- name: start CFME engine (evmserverd)
-  service:
-    name: evmserverd
-    state: started
