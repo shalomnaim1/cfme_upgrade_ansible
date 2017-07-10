@@ -1,0 +1,7 @@
+---
+- include: stop_cfme.yaml
+- include: yum_settings.yaml
+- include: cfme_upgrade.yaml
+- include: configure.yaml
+- include: start_cfme.yaml
+

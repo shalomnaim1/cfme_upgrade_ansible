@@ -1,0 +1,5 @@
+---
+- name: stop CFME engine (evmserverd)
+  service:
+    name: evmserverd
+    state: stopped
