@@ -3,3 +3,5 @@
   service:
     name: evmserverd
     state: started
+  notify:
+    - wait for CFME

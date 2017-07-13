@@ -1,0 +1,7 @@
+---
+- name: "wait for CFME to be available online"
+  shell: 'curl -I -k https://{{ ansible_hostname }}'
+  register: result
+  until: result.stdout.find("200 OK") != -1
+  retries: 60
+  delay: 10
