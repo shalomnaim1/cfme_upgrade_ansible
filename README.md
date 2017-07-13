@@ -10,30 +10,19 @@ repo list file which contain urls of repositories with the latest version of CFM
 before using this playbook, make sure ssh to any host is allowed with root user and without password.
 
 **Ansible playbool run command:**
-ansible-playbook cfme_upgrade_playbook.yaml -i hosts -u root -e
-{"username":"username","password":"password","repos":["http://url/to/repo/1","http://url/to/repo/2..."]}
+ansible-playbook -i hosts cfme_upgrade_playbook.yaml
 
 ## Input files structure:
 ### Inventory file:
-The inventory file contain only one group named cfme-appliances
 
 **example:**
+
+[cfme-appliances:vars]
+repos=["repo1","repo2","repo3"]
+password=123456
+username=root
 
 [cfme-appliances]
 10.35.70.96
 
-### Repo list file:
-This is file on yum db format, each repo contain 4 args:
-1) repo name
-2) repo url
-3) repo state enbaled
-4) gpg disable flag
 
-**example:**
-
-[update-0]
-name=update-url-0
-baseurl=http://url/to/repo
-enabled=1
-
-gpgcheck=0
