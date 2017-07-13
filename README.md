@@ -18,11 +18,13 @@ ansible-playbook -i hosts cfme_upgrade_playbook.yaml
 **example:**
 
 [cfme-appliances:vars]
+
 repos=["repo1","repo2","repo3"]
 password=123456
 username=root
 
 [cfme-appliances]
+
 10.35.70.96
 
 
