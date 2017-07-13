@@ -4,4 +4,4 @@
     name: evmserverd
     state: started
   notify:
-    - wait for CFME
+    - wait for CFME to be available online
