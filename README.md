@@ -1,4 +1,4 @@
-# cfme_upgrade_ansible
+# cfme upgrade ansible
 
 on this project i will developing automation based on ansible to ugrade CFME appliances.
 
