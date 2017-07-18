@@ -16,7 +16,7 @@ the command for remote installation is:
 ```ansible-galaxy install git+https://github.com/shalomnaim1/cfme_upgrade_ansible.git,master```
 
 ### Ansible playbook run command
-ansible-playbook -i <path to inventory file> cfme_upgrade_playbook.yaml
+ansible-playbook -i inventory.file cfme_upgrade_playbook.yaml
 
 ## Input files structure:
 ### Inventory file:
